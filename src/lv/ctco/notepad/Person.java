@@ -1,40 +1,21 @@
-package lv.ctco.notepad;
-
 /**
  * Created by olga.zoldaka on 11/16/2018.
  */
-public class Person {
-    private static int counter = 0;
-    private int id;
-    private String firsName;
+package lv.ctco.notepad;
+
+public class Person extends Record {
+    private String firstName;
     private String lastName;
+    private String email;
+    private String phone;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    private String phoneNumber;
-
-    public Person() {
-        counter++;
-    id = counter;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirsName() {
-        return firsName;
-    }
-
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -53,17 +34,40 @@ public class Person {
         this.email = email;
     }
 
-    private String email;
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
-                ", firsName='" + firsName + '\'' +
+                "id=" + getId() +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
-}
 
+    @Override
+    public boolean contains(String str) {
+        String s = str.toLowerCase();
+        return firstName.toLowerCase().contains(s)
+                || lastName.toLowerCase().contains(s)
+                || email.toLowerCase().contains(s)
+                || phone.toLowerCase().contains(s);
+    }
+
+    @Override
+    public void askData() {
+        firstName = Main.askString("First Name");
+        lastName = Main.askString("Last Name");
+        email = Main.askString("Email");
+        phone = Main.askPhone("Phone");
+    }
+}
