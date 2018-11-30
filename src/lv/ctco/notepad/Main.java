@@ -32,6 +32,10 @@ public class Main {
                 case "note":
                     createRecord(new StickyNote());
                     break;
+                case "rmd":
+                case "reminder":
+                    createRecord(new Reminder());
+                    break;
                 case "exit":
                     return;
                 default:
@@ -42,9 +46,6 @@ public class Main {
 
     private static void search() {
         String ss = askString("What would you like to find?");
-//        records.stream()
-//                .filter(r -> r.contains(ss.toLowerCase()))
-//                .forEach(System.out::println);
         for (Record r : records) {
             if (r.contains(ss)) {
                 System.out.println(r);
@@ -57,20 +58,6 @@ public class Main {
         records.add(record);
         System.out.println(record);
     }
-
-//    private static void createNote() {
-//        StickyNote note = new StickyNote();
-//        note.askData();
-//        records.add(note);
-//
-//    }
-//
-//    private static void createPerson() {
-//        Person p = new Person();
-//        p.askData();
-//        records.add(p);
-//    }
-
 
     private static void deleteRecordById() {
         int id = askInt("ID to delete");
@@ -114,6 +101,11 @@ public class Main {
             }
             return result;
         }
+    }
+
+    public static long askLong(Long msg) {
+        System.out.print(msg + ": ");
+        return scanner.nextLong();
     }
 
     public static int askInt(String msg) {
