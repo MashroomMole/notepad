@@ -31,9 +31,7 @@ public class StickyNote extends Record {
 
     @Override
     public void askData() {
-        String text = Main.askString("Enter note");
-        StickyNote note = new StickyNote();
-        note.setText(text);
+        text = Main.askString("Enter note");
     }
 
 }
