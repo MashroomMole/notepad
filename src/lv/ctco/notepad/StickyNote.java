@@ -7,6 +7,7 @@ public class StickyNote extends Record {
 
     private String text;
 
+
     public String getText() {
         return text;
     }
@@ -33,5 +34,4 @@ public class StickyNote extends Record {
     public void askData() {
         text = Main.askString("Enter note");
     }
-
 }

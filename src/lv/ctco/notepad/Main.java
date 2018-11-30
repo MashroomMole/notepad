@@ -1,11 +1,21 @@
 package lv.ctco.notepad;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.time.format.DateTimeFormatter.*;
+
 
 public class Main {
+    public static final String DATE_PATTERN = "dd-MMM-uuuu";
+    public static final String TIME_PATTERN = "H:mm";
+    public static final DateTimeFormatter DATE_FORMATTER = ofPattern(DATE_PATTERN);
+    public static final DateTimeFormatter TIME_FORMATTER = ofPattern(TIME_PATTERN);
+
     static Scanner scanner = new Scanner(System.in);
     static List<Record> records = new ArrayList<>();
 
@@ -35,6 +45,9 @@ public class Main {
                 case "rmd":
                 case "reminder":
                     createRecord(new Reminder());
+                    break;
+                case "alarm":
+                    createRecord(new Alarm());
                     break;
                 case "exit":
                     return;
@@ -133,5 +146,15 @@ public class Main {
 
             return result;
         }
+    }
+
+    public static LocalDate askDate(String msg) {
+        String strDate = askString(msg);
+        return LocalDate.parse(strDate, DATE_FORMATTER);
+    }
+
+    public static LocalTime askTime(String msg) {
+        String strTime = askString(msg);
+        return LocalTime.parse(strTime, TIME_FORMATTER);
     }
 }

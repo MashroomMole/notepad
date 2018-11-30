@@ -1,45 +1,38 @@
 package lv.ctco.notepad;
 
-public class Reminder extends Record {
-    private String reminder;
-    private String date;
+import java.time.LocalDate;
 
-    public String getDate() {
+public class Reminder extends Alarm {
+    private LocalDate date;
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-
-    public String getReminder() {
-        return reminder;
-    }
-
-    public void setReminder(String reminder) {
-        this.reminder = reminder;
-    }
-
-    @Override
+     @Override
     public String toString() {
         return "Reminder{" +
-                "date=" + getDate() +
-                " text='" + reminder + '\'' +
+                "id=" + getId() +
+                "date=" + date.format(Main.DATE_FORMATTER) +
+                " text='" + getText() +
+                '\'' +
                 '}';
     }
 
     @Override
     public boolean contains(String str) {
-        String s = str.toLowerCase();
-        return reminder.toLowerCase().contains(s)
-                || date.contains(s);
+        return super.contains(str)
+                || date.format(Main.DATE_FORMATTER).contains(str);
     }
 
 
     @Override
     public void askData() {
-        reminder = Main.askString("Enter Reminder");
-        date = Main.askString("Enter Data");
+        this.date = Main.askDate("Enter reminder Date");
+        super.askData();
     }
 }
