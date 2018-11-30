@@ -1,6 +1,3 @@
-/**
- * Created by olga.zoldaka on 11/16/2018.
- */
 package lv.ctco.notepad;
 
 public class Person extends Record {
